@@ -1,3 +1,3 @@
-export interface ITasks {
-  tasks?: string[];
+export interface ITask {
+  title: string;
 }

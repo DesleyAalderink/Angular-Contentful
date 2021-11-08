@@ -1,4 +1,4 @@
-export interface IAppState {
+export interface IAppContainer {
   fields?: any;
   title?: string;
   tasks?: string[];

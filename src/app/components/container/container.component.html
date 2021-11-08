@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-tasks></app-tasks>
-<div *ngFor="let todo of todos">
+<div [innerHTML]="richText" id="article"></div>
+<!-- <div *ngFor="let todo of todos">
   <img src="{{todo.thumb.file.url}}" alt="{{todo.thumb.description}}">
   <p>{{todo.date}}</p>
-  <div [innerHTML]="richText" id="article"></div>
-</div>
+</div> -->

@@ -3,7 +3,7 @@ import { TaskService } from '../../services/task.service'
 // import { Task } from '../../Task';
 import { ContentfulService } from 'src/app/contentful.service';
 import { Entry } from 'contentful';
-import { IAppState } from '../../Models/IAppState';
+import { IAppContainer } from '../../Models/IAppContainer';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 let options = {
@@ -20,22 +20,38 @@ let options = {
   encapsulation: ViewEncapsulation.None
 })
 export class ContainerComponent implements OnInit {
-  todos: IAppState[] = [];
+  globalAppContainer: IAppContainer = {};
   richText: string = '';
-  totalTasks: any = '';
+  totalTasks: number = 0;
 
   constructor(private contentfulService: ContentfulService) { }
 
   ngOnInit(): void {
-    // this.contentfulService.getContent('globalAppComponent')
-    // .then(res => {
+    this.contentfulService.getContent('7EV11i1fa3Ox2yXapGfIIR')
+    .then(res => {
+
+      this.globalAppContainer = res as IAppContainer;
+      this.totalTasks = this.globalAppContainer.fields.task.length;
+      const rawRichTextField = this.globalAppContainer.fields.article;
+
+      this.richText = documentToHtmlString(rawRichTextField, options)
+
+      if(this.totalTasks === 0) {
+        this.richText = this.richText.replace(`[geen]`, `geen`).replace(`{{totalTasks}}`, ``).replace(`[&#39;s]`, `'s`)
+      } else if (this.totalTasks === 1) {
+        this.richText = this.richText.replace(`{{totalTasks}}`, `${this.totalTasks}`).replace(`[geen]`, ``).replace(`[&#39;s]`, ``)
+      } else if (this.totalTasks > 1) {
+        this.richText = this.richText.replace(`{{totalTasks}}`, `${this.totalTasks}`).replace(`[geen]`, ``).replace(`[&#39;s]`, `'s`)
+      }
+    })
+      
     //   this.todos = res.map(result => ({
     //     thumb: result.fields.thumbnail.fields,
     //     date: result.fields.date,
     //     location: result.fields,
     //     article: result.fields.article,
     //     totalTasks: result.fields.task.length,
-    //   } as IAppState))
+    //   } as IAppContainer))
     //   const rawRichTextField = this.todos[0].article
 
     //   return documentToHtmlString(rawRichTextField, options)

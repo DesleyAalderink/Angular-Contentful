@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentfulService } from 'src/app/contentful.service';
-import { IAppState } from 'src/app/Models/IAppState';
+import { IAppContainer } from 'src/app/Models/IAppContainer';
 import { ContainerComponent } from '../container/container.component';
-import { Entry } from 'contentful';
+// import { Entry } from 'contentful';
 // import { title } from 'process';
 
 @Component({
@@ -11,8 +11,7 @@ import { Entry } from 'contentful';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  appstate: IAppState = {};
-  totalTasks: any = `Can't determine how many tasks...`;
+  globalAppContainer: IAppContainer = {};
 
   constructor(private contentfulService: ContentfulService) { }
 
@@ -21,9 +20,8 @@ export class HeaderComponent implements OnInit {
 
     this.contentfulService.getContent('7EV11i1fa3Ox2yXapGfIIR')
       .then(res => {
-        this.appstate = res;
-        this.appstate.fields.title = this.appstate.fields.title.replace(`{{totalTasks}}`, `${this.appstate.fields.task.length}`)
-        console.log(this.appstate);
+        this.globalAppContainer = res as IAppContainer;
+        this.globalAppContainer.fields.title = this.globalAppContainer.fields.title.replace(`{{totalTasks}}`, `${this.globalAppContainer.fields.task.length}`)
 
       })
     //   this.todos = res.map(result => ({

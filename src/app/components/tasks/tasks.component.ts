@@ -2,7 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 // import { Task } from '../../Task';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ContentfulService } from 'src/app/contentful.service';
-import { IAppState } from '../../Models/IAppState';
+import { IAppContainer } from '../../Models/IAppContainer';
+import { ITask } from 'src/app/Models/ITask';
 
 
 @Component({
@@ -11,9 +12,9 @@ import { IAppState } from '../../Models/IAppState';
   styleUrls: ['./tasks.component.css']
 })
 export class Tasks implements OnInit {
-  @Output() OnDeleteTask: EventEmitter<Task> = new EventEmitter()
+  // @Output() OnDeleteTask: EventEmitter<Task> = new EventEmitter()
   faTimes = faTimes;
-  tasks: IAppState[] = [];
+  task: ITask[] = [];
 
   constructor(private contentfulService: ContentfulService) { }
 
@@ -27,7 +28,7 @@ export class Tasks implements OnInit {
   }
 
   OnDelete(task: Task) {
-    this.OnDeleteTask.emit(task);
+    // this.OnDeleteTask.emit(task);
     // console.log(`OnDelete fires on ${this.task.id}`);
 
   }
