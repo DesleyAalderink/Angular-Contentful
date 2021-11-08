@@ -1,0 +1,10 @@
+<div  class="task" >
+  <ul *ngFor="let task of tasks">
+    <li *ngFor="let taskItem of task.tasks">{{taskItem}}
+      <fa-icon
+        [icon]="faTimes"
+        [ngStyle]="{'color': 'red'}"
+      ></fa-icon>
+    </li>
+  </ul>
+</div>
