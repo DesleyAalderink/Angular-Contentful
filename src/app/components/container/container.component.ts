@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TaskService } from '../../services/task.service'
-// import { Task } from '../../Task';
 import { ContentfulService } from 'src/app/contentful.service';
 import { Entry } from 'contentful';
 import { IAppContainer } from '../../Models/IAppContainer';

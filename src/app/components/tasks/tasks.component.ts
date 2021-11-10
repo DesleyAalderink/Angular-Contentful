@@ -12,13 +12,26 @@ import { ITask } from 'src/app/Models/ITask';
   styleUrls: ['./tasks.component.css']
 })
 export class Tasks implements OnInit {
-  // @Output() OnDeleteTask: EventEmitter<Task> = new EventEmitter()
   faTimes = faTimes;
   task: ITask[] = [];
+  selectValue: string = '';
 
   constructor(private contentfulService: ContentfulService) { }
 
   ngOnInit(): void {
+    const select = document.querySelector('select') as HTMLSelectElement;
+    select.addEventListener('change', () => {
+      this.selectValue = select.value;
+      
+      if(select.value === "work") {
+        console.log("i choose work");
+        this.contentfulService.getContent('7p09hpE2Zqs0rdp8qGsrat')
+        .then(res => {
+          console.log(res);
+          
+        })
+      }
+    })
     // this.contentfulService.getContent('tasks')
     // .then(res => {
     //   this.tasks = res.map(result => ({
