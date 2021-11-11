@@ -1,3 +1,3 @@
 export class ITask {
-  fields?: any;
+  title?: string;
 }

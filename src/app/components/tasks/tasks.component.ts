@@ -14,7 +14,7 @@ import { ITask } from 'src/app/Models/ITask';
 export class Tasks implements OnInit {
   faTimes = faTimes;
   taskObject: any = {};
-  tasks: [] = [];
+  tasks: any = [];
   selectValue: string = '';
 
   constructor(private contentfulService: ContentfulService) { }
@@ -29,9 +29,8 @@ export class Tasks implements OnInit {
         this.contentfulService.getContent('7p09hpE2Zqs0rdp8qGsrat')
         .then(res => {
           this.taskObject = res;
-          this.tasks = this.taskObject.fields.task
-          // console.log(this.tasks);
-
+          this.tasks = this.taskObject.fields.task;
+          console.log(typeof(this.tasks));
           
         })
       } 
