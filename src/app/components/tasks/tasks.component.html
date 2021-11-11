@@ -1,18 +1,15 @@
 <div  class="task" >
   <select name="cars" id="cars">
-    <option selected="selected" disabled="disabled">Choose your task type</option>
+    <option selected="selected" disabled="disabled">Choose an task type to see your task(s)</option>
     <option value="work">Work</option>
     <option value="sports">Sports</option>
     <option value="household">Household</option>
   </select>
-  <div id="work" class="none">
-    <input type="text">
-  </div>
-  <div id="sports" class="none">
-    <input type="text">
-  </div>
-  <div id="household" class="none">
-    <input type="text">
+  <div>
+    <h4>Your task(s)</h4>
+    <ul>
+      <li *ngFor="let task of tasks">{{tasks}}</li>
+    </ul>
   </div>
   <!-- <ul *ngFor="let task of tasks">
     <li *ngFor="let taskItem of task.tasks">{{taskItem}}

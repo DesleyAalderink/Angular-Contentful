@@ -1,3 +1,3 @@
-export interface ITask {
-  title: string;
+export class ITask {
+  fields?: any;
 }

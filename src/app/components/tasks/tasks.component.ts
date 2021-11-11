@@ -13,7 +13,8 @@ import { ITask } from 'src/app/Models/ITask';
 })
 export class Tasks implements OnInit {
   faTimes = faTimes;
-  task: ITask[] = [];
+  taskObject: any = {};
+  tasks: [] = [];
   selectValue: string = '';
 
   constructor(private contentfulService: ContentfulService) { }
@@ -27,7 +28,30 @@ export class Tasks implements OnInit {
         console.log("i choose work");
         this.contentfulService.getContent('7p09hpE2Zqs0rdp8qGsrat')
         .then(res => {
-          console.log(res);
+          this.taskObject = res;
+          this.tasks = this.taskObject.fields.task
+          // console.log(this.tasks);
+
+          
+        })
+      } 
+      
+      if (select.value === "sports") {
+        console.log('I choose sport');
+        this.contentfulService.getContent('7pB28ZeYoIPXR9J9PaeM1')
+        .then(res => {
+          this.taskObject = res;
+          this.tasks = this.taskObject.fields.task
+          
+        })
+      }
+
+      if (select.value === "household") {
+        console.log('I choose household');
+        this.contentfulService.getContent('7bTHgEvoQ5zCfQGuFB0s4s')
+        .then(res => {
+          this.taskObject = res;
+          this.tasks = this.taskObject.fields.task
           
         })
       }
