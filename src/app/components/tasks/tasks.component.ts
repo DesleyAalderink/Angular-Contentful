@@ -20,7 +20,7 @@ export class Tasks implements OnInit {
   constructor(private contentfulService: ContentfulService) { }
 
   ngOnInit(): void {
-    const select = document.querySelector('select') as HTMLSelectElement;
+    const select = document.querySelector('#task select') as HTMLSelectElement;
     select.addEventListener('change', () => {
       this.selectValue = select.value;
       
@@ -30,7 +30,8 @@ export class Tasks implements OnInit {
         .then(res => {
           this.taskObject = res;
           this.tasks = this.taskObject.fields.task;
-          console.log(typeof(this.tasks));
+          console.log(this.taskObject);
+          
           
         })
       } 

@@ -1,1 +1,14 @@
-<button [ngStyle]="{ 'background-color': color }" class="btn">{{ text }}</button>
+<button (click)="showAddTaskMenu()" [ngStyle]="{ 'background-color': color }" class="btn">{{ text }}</button>
+<div id="overlay" class="none">
+    <div id="addTaskMenu">
+        <form action="post">
+            <select name="task">
+                <option value="work">Work</option>
+                <option value="sport">Sport</option>
+                <option value="household">Household</option>
+            </select>
+            <input type="text">
+            <button type="submit" class="btn">Add Task</button>
+        </form>
+    </div>
+</div>

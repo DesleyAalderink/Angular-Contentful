@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent implements OnInit {
   @Input() text!: string;
   @Input() color!: string;
-  @Output() btnClick = new EventEmitter();
+  // @Output() btnClick = new EventEmitter();
 
   constructor() { }
 
@@ -16,9 +16,19 @@ export class ButtonComponent implements OnInit {
 
   }
 
-  onClick() {
-
-
+  showAddTaskMenu() {
+    const addTaskMenu = document.querySelector('#overlay') as HTMLElement
+    addTaskMenu!.classList.toggle('none')
+    console.log('Main click');
+    
+    document.querySelector('#overlay #addTaskMenu button')!.addEventListener('click', (e) => {
+      e.preventDefault()
+      addTaskMenu.classList.toggle('none')
+      console.log('clickie');
+      
+      
+    })
+    
   }
 
 }
