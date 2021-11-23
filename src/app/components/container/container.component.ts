@@ -15,7 +15,7 @@ let options = {
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.css'],
+  styleUrls: ['./container.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ContainerComponent implements OnInit {
