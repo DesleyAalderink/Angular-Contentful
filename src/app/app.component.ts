@@ -10,14 +10,10 @@ import { Entry } from 'contentful';
 })
 export class AppComponent implements OnInit {
 
-
-  // todo$?: Observable<any>
-
   constructor(private contentfulService: ContentfulService ) {}
 
   ngOnInit() {
-    // this.contentful.logContent('3qSfwXAEQPhl1EDYCaIPkl')
-    // this.todo$ = this.contentful.getContent('3qSfwXAEQPhl1EDYCaIPkl')
+
   }
 
 }
