@@ -23,9 +23,37 @@ export class ButtonComponent implements OnInit {
 
   hideAddTaskMenu(e: Event) {
     const addTaskMenu = document.querySelector('#overlay') as HTMLElement
+    const task = document.querySelector('#overlay select') as HTMLSelectElement
+    const taskValue = document.querySelector('#overlay input') as HTMLInputElement
+
+    let savedLocalTasks = [];
+
+    const localTaskObj = {taskType: task.value, taskValue: taskValue.value}
+    savedLocalTasks.push(localTaskObj)
+
+    this.saveToLocal(localTaskObj)
+
+    console.log(savedLocalTasks);
+    taskValue.value = '';
+    
+    // localStorage.clear()
+
+
+    // localStorage.setItem('LocalTasks', taskValue.value)
     addTaskMenu!.classList.add('none')
     e.preventDefault()
     console.log('clickie');
+  }
+
+  saveToLocal(localTaskObj: Object) {
+    let localTasks;
+    if(localStorage.getItem('tasks') === null) {
+      localTasks = []
+    } else {
+      localTasks = JSON.parse(localStorage.getItem('tasks') || '[]')
+    }
+    localTasks.push(localTaskObj)
+    localStorage.setItem('tasks', JSON.stringify(localTasks))
   }
 
 }

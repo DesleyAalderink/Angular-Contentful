@@ -14,6 +14,7 @@ import { ITask } from 'src/app/Models/ITask';
 export class Tasks implements OnInit {
   faTimes = faTimes;
   taskObject: any = {};
+  localTasks: any = [];
   tasks: any = [];
   selectValue: string = '';
 
@@ -56,6 +57,57 @@ export class Tasks implements OnInit {
         })
       }
     })
+
+    if(localStorage.getItem('tasks')) {
+      console.log('ik heb tasks');
+      const localTasks = JSON.parse(localStorage.getItem('tasks') || '{}');
+
+      // for (const [key, value] of Object.entries(localTasks)) {
+      //   console.log(key);
+      //   console.log(value);
+        
+        
+      // }
+
+      localTasks.forEach((task: any) => {
+        const localDiv = document.createElement('div')
+        const localDivH4 = document.createElement('h4')
+        const localDivP = document.createElement('p')
+
+        localDiv.appendChild(localDivH4)
+        localDiv.appendChild(localDivP)
+
+        document.querySelector('#localTask')?.appendChild(localDiv)
+
+        console.log(`${task.taskType}` + `${task.taskValue}`);
+
+        if(task.taskType === 'work') {
+          localDivH4.innerHTML = task.taskType
+          localDivP.innerHTML = task.taskValue
+        }
+
+        if(task.taskType === 'sport') {
+          localDivH4.innerHTML = task.taskType
+          localDivP.innerHTML = task.taskValue
+        }
+        
+
+
+        console.log(task);
+
+        // for (const [key, value] of Object.entries(task)) {
+        //   console.log(`${key}: ${value}`);
+          
+        // }
+        
+        // const localDiv = document.createElement('div')
+        
+        // document.querySelector('#localTask')?.appendChild(localDiv)
+      });
+      // console.log(localTasks);
+      
+    }
+
     // this.contentfulService.getContent('tasks')
     // .then(res => {
     //   this.tasks = res.map(result => ({
